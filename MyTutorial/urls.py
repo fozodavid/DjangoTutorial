@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from main.views import home
+from main.views import home, form, subscribed, thanks
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^form/',form),
+    url(r'^thanks/',thanks),
+    url(r'^subscribed/',subscribed),
     url(r'^$', home),
 ]

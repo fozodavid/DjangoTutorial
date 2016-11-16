@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Django Forms</title>
+</head>
+<body>
+    <h1>Survey</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>

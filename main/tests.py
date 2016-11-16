@@ -1,8 +1,9 @@
 from django.core.urlresolvers import resolve
 from django.test import TestCase
 from django.http import HttpRequest
-from main.views import home
+from main.views import home, form
 from main.models import Article
+from main.forms import SurveyForm
 
 # Create your tests here.
 class HomepageTest(TestCase):
@@ -37,3 +38,31 @@ class ModelTest(TestCase):
         response = home(request)
         self.assertTrue(response.content.startswith(b'<!doctype html>\n<html>\n<head>'))
         self.assertIn(self.test_body,response.content.decode())
+
+class FormTest(TestCase):
+
+    def setUp(self):
+        self.request = HttpRequest()
+        self.post_dict = {'human':True,'color':'bl','age':29,'name':'David Fozo','subscription':True,'email':'example@gmail.com'}
+
+    def test_form_renders_on_page_properly(self):
+        response = form(self.request)
+        for i in ['form','input','human','color','age','name','email']:
+            self.assertIn(i,response.content.decode())
+
+    def test_form_redirection(self):
+
+        def subs_n_test(subs,red_url):
+            self.post_dict['subscription'] = subs
+            response = self.client.post('/form/',self.post_dict)
+            self.assertRedirects(response,red_url)
+
+        subs_n_test(False,'/thanks/')
+        subs_n_test(True, '/subscribed/')
+
+    def test_not_human_raises_error(self):
+        self.post_dict['human'] = False
+        self.post_dict['color'] = 'rd'
+        form = SurveyForm(self.post_dict)
+        self.assertEqual(form.is_valid(),False)
+
