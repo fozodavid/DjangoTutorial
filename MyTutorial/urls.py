@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from main.views import home, form, subscribed, thanks
+from blog.views import view_post
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -23,4 +24,5 @@ urlpatterns = [
     url(r'^thanks/',thanks),
     url(r'^subscribed/',subscribed),
     url(r'^$', home),
+    url(r'^blog/(?P<slug>[-\w\d\_]+)/$', view_post, name='view_post'),
 ]
