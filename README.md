@@ -8,8 +8,7 @@ On my blog there is a tutorial series for beginners, where you can learn Django 
 
 ## Installation
 
-Follow these steps to clone my repository from github and make the tutorial setup on your computer. Replace branch “exerciseX” with your current exercise branch.
-
+Follow these steps to clone my repository from github and make the tutorial setup on your computer. Replace branch “exerciseX” with your current exercise branch. Type in these commands into your terminal:
 ``` 
 mkdir -p DjangoTutorial/{static,virtualenv,source,database,media}
 virtualenv --python=python3 DjangoTutorial/virtualenv/
@@ -36,9 +35,11 @@ DATABASES = {
     }
 }
 ```
-*** end of MyTutorial/local_settings.py ***
+
+Finish installation with the following shell commands:
 ```
 git branch -m exerciseX master
 source ../virtualenv/bin/activate
 pip install django==1.10
+deactivate
 ```
