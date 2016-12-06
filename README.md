@@ -12,7 +12,8 @@ Follow these steps to clone my repository from github and make the tutorial setu
 ``` 
 mkdir -p DjangoTutorial/{static,virtualenv,source,database,media}
 virtualenv --python=python3 DjangoTutorial/virtualenv/
-git clone https://github.com/fozodavid/DjangoTutorial.git --branch exerciseX --single-branch DjangoTutorial/source
+git clone https://github.com/fozodavid/DjangoTutorial.git \
+--branch exerciseX --single-branch DjangoTutorial/source
 cd DjangoTutorial/source
 touch MyTutorial/local_settings.py
 ```
